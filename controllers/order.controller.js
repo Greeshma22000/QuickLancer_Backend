@@ -4,7 +4,7 @@ import User from "../models/User.model.js";
 import Payment from "../models/Payment.model.js";
 
 // Get all orders for a freelancer
-const getFreelancerOrders = async (req, res) => {
+export const getFreelancerOrders = async (req, res) => {
   try {
     const { status, search, sort, page = 1, limit = 10 } = req.query;
     
@@ -75,7 +75,7 @@ const getFreelancerOrders = async (req, res) => {
 };
 
 // Get all orders for a client
-const getClientOrders = async (req, res) => {
+export const getClientOrders = async (req, res) => {
   try {
     const { status, search, sort, page = 1, limit = 10 } = req.query;
     
@@ -146,7 +146,7 @@ const getClientOrders = async (req, res) => {
 };
 
 // Get a single order by ID
-const getOrderById = async (req, res) => {
+export const getOrderById = async (req, res) => {
   try {
     const { id } = req.params;
     
@@ -178,7 +178,7 @@ const getOrderById = async (req, res) => {
 };
 
 // Create a new order (for clients)
-const createOrder = async (req, res) => {
+export const createOrder = async (req, res) => {
   try {
     const { gigId, title, description, requirements, amount, deliveryDate } = req.body;
 
@@ -242,7 +242,7 @@ const createOrder = async (req, res) => {
 };
 
 // Update order status (for freelancers)
-const updateOrderStatus = async (req, res) => {
+export const updateOrderStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { status, deliverables } = req.body;
@@ -309,7 +309,7 @@ const updateOrderStatus = async (req, res) => {
 };
 
 // Add message to order
-const addOrderMessage = async (req, res) => {
+export const addOrderMessage = async (req, res) => {
   try {
     const { id } = req.params;
     const { message, attachments } = req.body;
@@ -356,7 +356,7 @@ const addOrderMessage = async (req, res) => {
 };
 
 // Cancel order
-const cancelOrder = async (req, res) => {
+export const cancelOrder = async (req, res) => {
   try {
     const { id } = req.params;
     const { reason } = req.body;
@@ -399,7 +399,7 @@ const cancelOrder = async (req, res) => {
 };
 
 // Get order statistics
-const getOrderStats = async (req, res) => {
+export const getOrderStats = async (req, res) => {
   try {
     const userId = req.user.id;
     const userRole = req.user.role;
@@ -442,14 +442,3 @@ const getOrderStats = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
-export default {
-  getFreelancerOrders,
-  getClientOrders,
-  getOrderById,
-  createOrder,
-  updateOrderStatus,
-  addOrderMessage,
-  cancelOrder,
-  getOrderStats
-}; 

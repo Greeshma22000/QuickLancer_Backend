@@ -4,7 +4,7 @@ import User from "../models/User.model.js";
 import Gig from "../models/Gig.model.js";
 
 // Get all reviews for a freelancer
-const getFreelancerReviews = async (req, res) => {
+export const getFreelancerReviews = async (req, res) => {
   try {
     const { rating, gig, search, sort, page = 1, limit = 10 } = req.query;
     
@@ -77,7 +77,7 @@ const getFreelancerReviews = async (req, res) => {
 };
 
 // Get a single review by ID
-const getReviewById = async (req, res) => {
+export const getReviewById = async (req, res) => {
   try {
     const { id } = req.params;
     
@@ -109,7 +109,7 @@ const getReviewById = async (req, res) => {
 };
 
 // Create a new review (for clients)
-const createReview = async (req, res) => {
+export const createReview = async (req, res) => {
   try {
     const { orderId, rating, reviewText, categories, attachments } = req.body;
 
@@ -185,7 +185,7 @@ const createReview = async (req, res) => {
 };
 
 // Add freelancer reply to a review
-const addFreelancerReply = async (req, res) => {
+export const addFreelancerReply = async (req, res) => {
   try {
     const { id } = req.params;
     const { replyText } = req.body;
@@ -239,7 +239,7 @@ const addFreelancerReply = async (req, res) => {
 };
 
 // Update freelancer reply
-const updateFreelancerReply = async (req, res) => {
+export const updateFreelancerReply = async (req, res) => {
   try {
     const { id } = req.params;
     const { replyText } = req.body;
@@ -293,7 +293,7 @@ const updateFreelancerReply = async (req, res) => {
 };
 
 // Get review statistics for freelancer
-const getReviewStats = async (req, res) => {
+export const getReviewStats = async (req, res) => {
   try {
     const freelancerId = req.user.id;
 
@@ -377,12 +377,3 @@ const updateFreelancerStats = async (freelancerId) => {
     console.error("Error updating freelancer stats:", error);
   }
 };
-
-export default{
-  getFreelancerReviews,
-  getReviewById,
-  createReview,
-  addFreelancerReply,
-  updateFreelancerReply,
-  getReviewStats
-}; 

@@ -84,7 +84,7 @@ const OrderSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Indexes for better query performance
-OrderSchema.index({ orderId: 1 });
+// OrderSchema.index({ orderId: 1 });
 OrderSchema.index({ client: 1, createdAt: -1 });
 OrderSchema.index({ freelancer: 1, createdAt: -1 });
 OrderSchema.index({ status: 1 });

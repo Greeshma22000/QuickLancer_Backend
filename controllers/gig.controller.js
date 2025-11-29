@@ -2,7 +2,7 @@ import Gig from "../models/Gig.model.js";
 import User from "../models/User.model.js";
 
 // Create a new gig
-const createGig = async (req, res) => {
+export const createGig = async (req, res) => {
   try {
     const {
       title,
@@ -62,7 +62,7 @@ const createGig = async (req, res) => {
 };
 
 // Get all gigs for a freelancer
-const getFreelancerGigs = async (req, res) => {
+export const getFreelancerGigs = async (req, res) => {
   try {
     const { status, category, search, sort, page = 1, limit = 10 } = req.query;
     
@@ -136,7 +136,7 @@ const getFreelancerGigs = async (req, res) => {
 };
 
 // Get a single gig by ID
-const getGigById = async (req, res) => {
+export const getGigById = async (req, res) => {
   try {
     const { id } = req.params;
     
@@ -171,7 +171,7 @@ const getGigById = async (req, res) => {
 };
 
 // Update a gig
-const updateGig = async (req, res) => {
+export const updateGig = async (req, res) => {
   try {
     const { id } = req.params;
     const updateData = req.body;
@@ -207,7 +207,7 @@ const updateGig = async (req, res) => {
 };
 
 // Delete a gig
-const deleteGig = async (req, res) => {
+export const deleteGig = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -239,7 +239,7 @@ const deleteGig = async (req, res) => {
 };
 
 // Update gig status
-const updateGigStatus = async (req, res) => {
+export const updateGigStatus = async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
@@ -275,7 +275,7 @@ const updateGigStatus = async (req, res) => {
 };
 
 // Get gig statistics
-const getGigStats = async (req, res) => {
+export const getGigStats = async (req, res) => {
   try {
     const freelancerId = req.user.id;
 
@@ -315,13 +315,3 @@ const getGigStats = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
-
-export default {
-  createGig,
-  getFreelancerGigs,
-  getGigById,
-  updateGig,
-  deleteGig,
-  updateGigStatus,
-  getGigStats
-}; 
